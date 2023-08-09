@@ -1,6 +1,7 @@
 import { useState, useRef } from 'react'
-import { motion } from 'framer-motion'
-import './styles.css'
+// import { motion } from 'framer-motion'
+// import './styles.css'
+import { GridContainer, DimmedLayer, Card } from '../common/GridComponents'
 
 const cards = [
   { id: 1, component: <h1>Card 1</h1> },
@@ -11,7 +12,6 @@ const cards = [
 ]
 
 const renderChildDiv = (card) => {
-  console.log('CHILDCARD : ', card)
   switch (card) {
     case 3:
       return <h1>Child Div for Card 3</h1>
@@ -24,19 +24,18 @@ const renderChildDiv = (card) => {
   }
 }
 
-export const LayoutCards = () => {
+export const MainPage = () => {
   const containerRefs = useRef(new Array())
   const [selectedId, setSelectedId] = useState(null)
-
-  console.log('selectedId : ', selectedId)
 
   if (selectedId === 1 || selectedId === 2) setSelectedId(null)
 
   return (
-    <div className="layout-cards">
+    <GridContainer>
       {cards.map((card, i) => (
-        <motion.div
-          className={selectedId === card.id ? 'opened-card' : 'card'}
+        <Card
+          // className={selectedId === card.id ? 'opened-card' : 'card'}
+          opened={selectedId === card.id}
           key={i}
           layout
           ref={(el) => (containerRefs.current[card.id] = el)}
@@ -49,12 +48,9 @@ export const LayoutCards = () => {
               <div>{renderChildDiv(selectedId)}</div>
             </div>
           )}
-        </motion.div>
+        </Card>
       ))}
-      <motion.div
-        className="dim-layer"
-        animate={{ opacity: selectedId ? 0.3 : 0 }}
-      />
-    </div>
+      <DimmedLayer animate={{ opacity: selectedId ? 0.3 : 0 }} />
+    </GridContainer>
   )
 }

@@ -1,11 +1,11 @@
-import './App.css'
-import { LayoutCards } from './components/LayoutCards'
+import { MainContainer } from './common/GridComponents'
+import { MainPage } from './components/MainPage'
 
 function App() {
   return (
-    <div className="main-container">
-      <LayoutCards />
-    </div>
+    <MainContainer>
+      <MainPage />
+    </MainContainer>
   )
 }
 

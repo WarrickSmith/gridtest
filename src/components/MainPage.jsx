@@ -1,6 +1,4 @@
 import { useState, useRef } from 'react'
-// import { motion } from 'framer-motion'
-// import './styles.css'
 import { GridContainer, DimmedLayer, Card } from '../common/GridComponents'
 
 const cards = [
@@ -34,7 +32,6 @@ export const MainPage = () => {
     <GridContainer>
       {cards.map((card, i) => (
         <Card
-          // className={selectedId === card.id ? 'opened-card' : 'card'}
           opened={selectedId === card.id}
           key={i}
           layout
@@ -43,10 +40,10 @@ export const MainPage = () => {
         >
           {selectedId !== card.id && card.component}
           {selectedId === card.id && (
-            <div>
+            <>
               <div> X </div>
               <div>{renderChildDiv(selectedId)}</div>
-            </div>
+            </>
           )}
         </Card>
       ))}

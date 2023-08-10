@@ -38,6 +38,8 @@ export const DimmedLayer = styled(motion.div)`
 `
 
 export const Card = styled(motion.div)`
+  display: grid;
+  place-items: center;
   background-color: var(--bg-color-alt);
   border: 2px solid var(--color);
   border-radius: 1.5rem;
@@ -46,34 +48,25 @@ export const Card = styled(motion.div)`
   cursor: pointer;
 
   &:nth-child(1) {
-    grid-column: 1;
-    grid-row: 1 / span 2;
+    grid-row: span 2;
+    background-image: url('https://warricksmith.com/images/warrick.jpg');
+    background-size: cover;
+    background-position: center;
   }
 
-  &:nth-child(2) {
-    grid-column: 2;
-    grid-row: 1;
-  }
-
-  &:nth-child(3) {
-    grid-column: 3;
-    grid-row: 1;
-  }
-
-  &:nth-child(4) {
-    grid-column: 2;
-    grid-row: 2;
-  }
-
-  &:nth-child(5) {
-    grid-column: 3;
-    grid-row: 2;
+  @media (max-width: 768px) {
+    &:nth-child(1) {
+      display: none;
+    }
   }
 
   ${(props) =>
     props.opened &&
     css`
+      display: grid;
+      place-items: center;
       color: var(--color);
+      background-color: grey;
       border: 2px solid var(--color);
       border-radius: 1.5rem;
       cursor: pointer;
@@ -86,17 +79,5 @@ export const Card = styled(motion.div)`
       left: 0;
       margin: auto;
       z-index: 10;
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      flex-direction: column;
-
-      > div {
-        background-color: var(--bg-color-alt);
-        height: 100%;
-        width: 100%;
-        border-radius: 1.5rem;
-        box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
-      }
     `}
 `
